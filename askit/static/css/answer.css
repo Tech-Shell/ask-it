@@ -1,0 +1,149 @@
+* {
+  scroll-behavior: smooth;
+}
+
+body{
+  background-color: teal;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.678);
+  display: inline-block;
+  height: 4rem;
+}
+
+.nav-align {
+  margin-left: auto;
+  margin-right: 15rem;
+}
+
+.brand {
+  margin-left: 13rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+ul li {
+  margin: 0.3rem;
+  padding: 5px;
+}
+
+ul li a:after, a.active:after {
+    content:'';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
+}
+ul li a:hover:after{
+    transform-origin: bottom left;
+                transform: scaleX(1);
+               
+           }
+
+           
+ul li a{
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  padding: 15px ;
+}
+ul li a:hover{
+    color: white;
+}
+
+.ans_head{
+  font-size: 40px;
+  font-family: 'Lato', sans-serif;
+}
+
+.ans-container{
+  margin-top: 8rem;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.contact_head {
+  font-size: 40px;
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+
+.icon {
+  color: white;
+}
+
+.contact_text {
+  color: white;
+}
+
+.contact {
+  margin-top: 7rem;
+  background-color: #dc3545;
+}
+
+footer{
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.to-top {
+  background: linear-gradient(45deg, #3921c5, #2159ac, #239bc0);
+  background-size: 100%;
+  position: fixed;
+  bottom: 16px;
+  right:32px;
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:32px;
+  color:black;
+  text-decoration: none;
+  opacity:0;
+  pointer-events: none;
+  transition: all .4s;
+}
+
+.to-top:hover{
+  color: white;
+}
+
+.to-top.active {
+  bottom:32px;
+  pointer-events: auto;
+  opacity:1;
+  text-decoration: none;
+}
+
+@media(max-width: 576px){
+  .brand{
+    margin-left: 0px;
+  }
+
+  nav{
+    height: fit-content;
+  }
+
+  .nav-align{
+    margin-left: 0px;
+  }
+
+}

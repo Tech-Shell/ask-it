@@ -1,11 +1,131 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask-it</title>
-</head>
-<body>
-    <h1>ASK-IT</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <nav class="navbar fixed-top navbar-expand-md" id="nav">
+    <a href="{% url 'index' %}" class="brand"><img src="{% static 'assets/notifyreLogo2.png' %}" alt="logo" height="60px" width="60px"></a>
+    <button class="navbar-toggler navbar-light" data-toggle="collapse" data-target=".menu">
+      <span class="navbar-toggler-icon"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse nav menu">
+      <ul class="navbar-nav nav-align">
+        <li class="nav-item"><a href="#about" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="{% url 'form' %}" class="nav-link">Generate</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid pic">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h1 class="main_head">
+          <p class="typewrite" data-period="200" data-type='[ "Got Something ?", "Ask-it." ]'>
+            <span class="wrap"></span>
+          </p>
+        </h1>
+      </div>
+      <div class="col-12 text-center mt-5">
+        <button class="btn btn-danger" id="generate"><a style="color:white;text-decoration:none;" href="{% url 'form' %}">Generate Question</a></button>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3 mb-5" id="about">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h1 class="about_head">Features</h1>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 col-md-4">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Filtered Inputs</h5>
+            <p class="card-text">Every input is filtered first, removing the unnecessary and inappropriate words from
+              the answer list.</p>
+          </div>
+          <img src="{% static 'assets/strikethrough.jpg' %}" class="card-img-top" alt="strike-off">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Wordcloud Generator</h5>
+            <p class="card-text">We offer an option to generate a wordcloud for every question asked, which can be
+              downloaded later.</p>
+          </div>
+          <img src="{% static 'assets/wordcloud.jpg' %}" class="card-img-top" alt="wordcloud">
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Don't want a wordcloud?</h5>
+            <p class="card-text">We also offer the option to download a list of all the answers separately.</p>
+          </div>
+          <img src="{% static 'assets/answer.jpg' %}" class="card-img-top" alt="answers">
+        </div>
+      </div>
+      <div class="col-12 col-md-4 end-features">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Character Limit</h5>
+            <p class="card-text">The host can specify the number of characters he wants to allow to be written in the
+              answer box.</p>
+          </div>
+          <img src="{% static 'assets/anas-alshanti-feXpdV001o4-unsplash.jpg' %}" class="card-img-top" alt="keyboard">
+        </div>
+      </div>
+      <div class="col-12 col-md-4 end-features">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Shareable Links</h5>
+            <p class="card-text">Form the question, generate a shareable link and share it with people you wanna ask
+              questions from.</p>
+          </div>
+          <img src="{% static 'assets/link.png' %}" class="card-img-top" alt="link-pic">
+        </div>
+      </div>
+      <div class="col-12 col-md-4 end-features">
+        <div class="card shadow">
+          <div class="card-body text-center">
+            <h5 class="card-title">Restricted Words</h5>
+            <p class="card-text">The host the can restrict users from writing certain words apart from the words the website is already restricting.</p>
+          </div>
+          <img src="{% static 'assets/restrict.jpg' %}" class="card-img-top" alt="link-pic">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid contact" id="contact">
+    <div class="row">
+      <div class="col-md-12 text-center mt-4">
+        <h1 class="contact_head">Contact Us</h1>
+      </div>
+      <div class="container mt-5">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center mb-5">
+            <a href="mailto:techshell.noreply@gmail.com"><i class="fa fa-2x fa-envelope icon"></i></a>
+            <p class="contact_text">techshell.noreply@gmail.com</p>
+          </div>
+          <div class="col-md-4 text-center mb-5">
+            <a href="https://www.instagram.com/tech.shell/"><i class="fab fa-3x fa-instagram icon mb-1"></i></a>
+            <p class="contact_text">tech.shell</p>
+          </div>
+          <div class="col-md-4 text-center mb-5">
+            <i class="fas fa-2x fa-map-marker-alt icon"></i>
+            <p class="contact_text">Gurugram, 122001</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <small>Developed by Vaibhav Sharma • Anshul Saha • Yuvraaj Narula • Aditya Aggarwal</small>
+  </footer>
+  <a href="#" class="to-top">
+    <i class="fas fa-chevron-up"></i>
+  </a>
+{% endblock %}

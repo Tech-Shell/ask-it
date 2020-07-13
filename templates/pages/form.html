@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Generate{% endblock %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-5">
+        <div class="form-content ">
+          <form action="{% url 'link' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input name="name" type="name" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input name="email" type="email" class="form-control" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="question">Question</label>
+              <input name="question" type="question" class="form-control" id="question" required>
+            </div>
+            <div class="form-group">
+              <label for="charac">Characters Allowed</label>
+              <input name="characters" type="number" class="form-control" id="charac" placeholder="Spaces included" required>
+            </div>
+            <div class="form-group">
+              <label for="restricted">Restricted Words</label>
+              <textarea name="restricted_words" class="form-control" placeholder="Type the words you want to filter separated by a “,” (comma)" id="restricted" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <div>
+                <button type="submit" class="btn btn-danger">Generate</button>
+              </div>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

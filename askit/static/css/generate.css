@@ -1,0 +1,31 @@
+*{
+    font-family: 'Poppins';
+  }
+  body{
+    background-color: teal;
+  }
+  .link{
+    margin-top:17rem;
+  }
+
+  .plum{
+    text-decoration: none;
+    color: black;
+  }
+  .plum:hover{
+    text-decoration: none;
+    color: black;
+  }
+  .link1{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px black;
+  }
+  @media(max-width: 576px){
+     .row{
+      margin: -0.25rem;
+    }
+    .link{
+      margin-top: 12.5rem;
+    }
+  }
