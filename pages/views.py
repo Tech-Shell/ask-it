@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import random
 from pages.db import db
 from pages.main_dict import dict1
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 def index(request):
     return render(request, 'pages/index.html')
@@ -57,3 +59,42 @@ def link(request):
         return render(request, 'pages/generate.html', context)
     else:
         print('CC Error')
+
+def admin_panel(request, admin_code):
+    user_code = dict1[int(admin_code)]
+    user = db.collection(u'users').document(str(user_code)).get().to_dict()
+    responses = user['responses']
+    context = {
+        'responses':responses,
+    }
+    return render(request, 'pages/admin_area.html', context)
+
+
+def user_panel(request, user_code):
+    if request.method == "POST":
+        answer = request.POST['answer']
+        user_code = request.POST['user_code'] 
+
+        user = db.collection(u'users').document(str(user_code))
+        user.update({u'answers': firestore.ArrayUnion([answer])})
+        user.update({"responses": firestore.Increment(1)})
+        return render(request, 'pages/success.html')
+    else:
+        user = db.collection(u'users').document(str(user_code)).get().to_dict()
+        question = user['question']
+        characters = user['characters']
+        context = {
+            'question':question,
+            'characters':characters,
+            'user_code':user_code,
+        }
+        return render(request, 'pages/answer.html', context)
+
+
+            
+    
+    
+    
+
+
+

@@ -3,7 +3,7 @@
 {% block title %}Admin Area{% endblock %}
 {% block content %}
   <nav class="navbar fixed-top navbar-expand-md" id="nav">
-    <a href="{% url 'index' %}" class="brand"><img src="{% static 'assets/notifyreLogo2.png' %}" alt="logo" height="60px" width="60px"></a>
+    <a href="{% url 'index' %}" class="brand"><img src="{% static 'assets/Ask-it_logo_textPoppins4.png' %}" alt="logo" height="50px" width="145px"></a>
     <button class="navbar-toggler navbar-light" data-toggle="collapse" data-target=".menu">
       <span class="navbar-toggler-icon"></span>
       <span class="icon-bar"></span>
@@ -12,7 +12,7 @@
     </button>
     <div class="collapse navbar-collapse nav menu">
       <ul class="navbar-nav nav-align">
-        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="#responses" class="nav-link">Responses</a></li>
         <li class="nav-item"><a href="#wordcloud" class="nav-link">Wordcloud</a></li>
       </ul>
@@ -24,10 +24,10 @@
         <h1 class="responses_head">Responses</h1>
       </div>
       <div class="col-12 text-center">
-        <h4 class="responses_content">You currently have <span>5</span> responses.</h4>
+        <h4 class="responses_content">You currently have <span>{{ responses }}</span> responses.</h4>
       </div>
       <div class="col-12 col-md-4 text-center mt-3">
-        <button class="btn btn-success">Refresh</button>
+        <button class="btn btn-success" onClick="window.location.reload();">Refresh</button>
       </div>
       <div class="col-12 text-center">
         <h4 class="responses_content">Download the answer list here.</h4>

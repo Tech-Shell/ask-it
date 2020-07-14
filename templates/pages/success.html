@@ -19,23 +19,7 @@
   <div class="container ans-container">
     <div class="row">
       <div class="col-12 ans text-center">
-        <h1 class="ans_head mt-3 mb-3">Your Answer</h1>
-      </div>
-      <div class="col-12 mt-3 mb-3">
-        <h3>
-          Q)- <strong><em>{{ question }}</em></strong>
-        </h3>
-      </div>
-      <div class="col-12 mb-2">
-        <form action="{% url 'user_panel' user_code  %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="user_code" value="{{ user_code }}">
-          <input type="text" name="answer" class="form-control" maxlength = "{{ characters }}" placeholder="Your answer..">
-          <p class="mt-2">*Maximum characters allowed: <span>{{ characters }}</span></p>
-          <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
-          </div>
-        </form>
+        <h1 class="ans_head mt-3 mb-3">Your answer has been submitted successfully.</h1>
       </div>
     </div>
   </div>
