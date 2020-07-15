@@ -64,7 +64,12 @@ def admin_panel(request, admin_code):
     user_code = dict1[int(admin_code)]
     user = db.collection(u'users').document(str(user_code)).get().to_dict()
     responses = user['responses']
+    answers = user['answers']
+    unique_string=(" ").join(answers)
+    show_wordcloud = False
     context = {
+        'show_wordcloud':show_wordcloud,
+        'unique_string':unique_string,
         'responses':responses,
     }
     return render(request, 'pages/admin_area.html', context)

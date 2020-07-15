@@ -33,7 +33,8 @@
         <h4 class="responses_content">Download the answer list here.</h4>
       </div>
       <div class="col-12 col-md-4 text-center mt-3 mb-3">
-        <button class="btn btn-info">Download Answers</button>
+        <input id="text-val" type="hidden" value="{{ unique_string }}">
+        <input type="button" class="btn btn-info" id="dwn-btn" value="Download Answers">
       </div>
     </div>
   </div>
@@ -49,14 +50,17 @@
         <button class="btn btn-dark">Generate</button>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-6 col-md-4 text-center mt-2 mb-4 thumbnail">
-        <img src="assets/wordcloud.png" alt="wordcloud thumbnail" class="img-thumbnail">
-        <div class="overlay">
-          <div class="text"><a href="#" data-toggle="modal" data-target="#wordCloud">Click here to see image.</a></div>
+    {% if show_wordcloud == False %}
+    {% else %}
+      <div class="row justify-content-center">
+        <div class="col-6 col-md-4 text-center mt-2 mb-4 thumbnail">
+          <img src="assets/wordcloud.png" alt="wordcloud thumbnail" class="img-thumbnail">
+          <div class="overlay">
+            <div class="text"><a href="#" data-toggle="modal" data-target="#wordCloud">Click here to see image.</a></div>
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
     <div class="row justify-content-center">
       <div class="col-12 col-md-7">
         <div class="modal fade" id="wordCloud" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -102,4 +106,24 @@
   <a href="#" class="to-top">
     <i class="fas fa-chevron-up"></i>
   </a>
+  <script>
+    function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+    }
+    document.getElementById("dwn-btn").addEventListener("click", function(){
+        var text = document.getElementById("text-val").value;
+        var filename = "answers.txt";
+        
+        download(filename, text);
+    }, false);
+  </script>
   {% endblock %}
