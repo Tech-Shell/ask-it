@@ -47,14 +47,18 @@
         <h4 class="responses_content">Click here to generate the wordcloud for all the answers.</h4>
       </div>
       <div class="col-12 col-md-4 text-center mt-3 mb-3">
-        <button class="btn btn-dark">Generate</button>
+        <form action="{% url 'admin_panel' admin_code %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="user_code" value="{{ admin_code }}">
+          <button type="submit" class="btn btn-dark">Generate</button>
+        </form>
       </div>
     </div>
     {% if show_wordcloud == False %}
     {% else %}
       <div class="row justify-content-center">
         <div class="col-6 col-md-4 text-center mt-2 mb-4 thumbnail">
-          <img src="assets/wordcloud.png" alt="wordcloud thumbnail" class="img-thumbnail">
+          <img src="{{ image_url }}" alt="wordcloud thumbnail" class="img-thumbnail">
           <div class="overlay">
             <div class="text"><a href="#" data-toggle="modal" data-target="#wordCloud">Click here to see image.</a></div>
           </div>
@@ -75,7 +79,7 @@
               <div class="modal-body">
                <div class="row">
                  <div class="col-12">
-                   <img src="assets/wordcloud.png" alt="wordcloud image" class="img-fluid">
+                   <img src="{{ image_url }}" alt="wordcloud image" class="img-fluid">
                  </div>
                </div>
               </div>
@@ -84,19 +88,33 @@
         </div>
       </div>     
     </div>
-    <div class="row justify-content-center">
-      <div class="col-12 text-center">
-        <h4 class="responses_content">Get the wordcloud directly on your mail.</h4>
+    {% if mail_sent == True %}
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <h4 class="responses_content">Your wordcloud has been mailed successfully.</h4>
+        </div>
       </div>
-      <div class="col-12 col-md-4 text-center mt-3 mb-3">
-        <button class="btn btn-primary">Mail Wordcloud</button>
+    {% else %}
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <h4 class="responses_content">Get the wordcloud directly on your mail.</h4>
+        </div>
+        <div class="col-12 col-md-4 text-center mt-3 mb-3">
+          <form action="{% url 'mail_cloud' admin_code %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Mail Wordcloud</button>
+          </form>
+        </div>
       </div>
-    </div>
+    {% endif %}
   </div>
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-12 col-md-4 text-center">
-        <button class="btn btn-danger mt-3 mb-5">End Meeting</button>
+        <form action="{% url 'end_meeting' admin_code %}" method="POST">
+          {% csrf_token %}
+          <button class="btn btn-danger mt-3 mb-5">End Meeting</button>
+        </form>
       </div>
     </div>
   </div>
