@@ -52,7 +52,7 @@
 
     textArea.addEventListener('input', () => {
       const remaining = maxchar - textArea.value.length;
-      const color = remaining < 10 ? 'red': null;
+      const color = remaining < 5 ? 'red': null;
 
       remain.textContent = remaining +' characters remaining';
       remain.style.color = color;
