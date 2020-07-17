@@ -77,7 +77,7 @@ def link(request):
 
 def admin_panel(request, admin_code):
     if request.method == "POST":
-        user_code = db.collection(u'users').document(main).get().to_dict()[str(admin_code)]
+        user_code = db.collection(u'users').document(u'main').get().to_dict()[str(admin_code)]
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
@@ -109,7 +109,7 @@ def admin_panel(request, admin_code):
         }
         return render(request, 'pages/admin_area.html', context)
     else:
-        user_code = db.collection(u'users').document(main).get().to_dict()[str(admin_code)]
+        user_code = db.collection(u'users').document(u'main').get().to_dict()[str(admin_code)]
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
