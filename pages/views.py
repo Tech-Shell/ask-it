@@ -42,7 +42,9 @@ def link(request):
         
         admin_code = random.sample(range(111111,555555),1)[0]
         user_code = random.sample(range(555556,999999),1)[0]
-        dict1[admin_code] = user_code
+        db.collection(u'users').document(u'main').set({
+            admin_code: user_code,
+        })
 
         db.collection(u'users').document(str(user_code)).set({
                 u'user_code' : user_code,
@@ -75,7 +77,7 @@ def link(request):
 
 def admin_panel(request, admin_code):
     if request.method == "POST":
-        user_code = dict1[int(admin_code)]
+        user_code = db.collection(u'users').document(main).get().to_dict()[admin_code]
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
