@@ -56,10 +56,10 @@ def link(request):
                 u'answers':[],
                     })
         
-        admin_url = "http://ask-it.gq/"+ str(admin_code) + "/admin_panel"
+        admin_url = "http://www.ask-it.gq/"+ str(admin_code) + "/admin_panel"
         local_admin_url = "http://localhost:8000/"+ str(admin_code) + "/admin_panel"
 
-        user_url = "http://ask-it.gq/"+ str(user_code)
+        user_url = "http://www.ask-it.gq/"+ str(user_code)
         local_user_url = "http://localhost:8000/"+ str(user_code)
 
         context = {
