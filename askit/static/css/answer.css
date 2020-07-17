@@ -145,6 +145,11 @@ footer{
     height: fit-content;
   }
 
+  .ans-container{
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+  }
+
   .answer {
     font-size: 2.5rem;
   }
@@ -159,6 +164,11 @@ footer{
   
   .answer {
     font-size: 1.5rem;
+  }
+  
+  .ans-container{
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
   }
   
 }
