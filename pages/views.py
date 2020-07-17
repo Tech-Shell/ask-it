@@ -129,7 +129,16 @@ def user_panel(request, user_code):
         user_code = request.POST['user_code'] 
 
         user = db.collection(u'users').document(str(user_code))
-        user.update({u'answers': firestore.ArrayUnion([answer])})
+        try:
+            specific_answers = answer.split()
+        except:
+            specific_answers = []
+            specific_answers.append(answer)
+
+        for i in specific_answers:
+            user.update({u'answers': firestore.ArrayUnion([i])})
+        
+        
         user.update({"responses": firestore.Increment(1)})
         return render(request, 'pages/success.html')
     else:
