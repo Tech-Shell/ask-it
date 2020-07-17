@@ -42,9 +42,8 @@ def link(request):
         
         admin_code = random.sample(range(111111,555555),1)[0]
         user_code = random.sample(range(555556,999999),1)[0]
-        db.collection(u'users').document(u'main').set({
-            str(admin_code): user_code,
-        })
+        doc_ref = db.collection(u'users').document(u'main')
+        doc_ref.update({str(admin_code): user_code})
 
         db.collection(u'users').document(str(user_code)).set({
                 u'user_code' : user_code,
@@ -82,7 +81,7 @@ def admin_panel(request, admin_code):
         responses = user['responses']
         answers = user['answers']
         res_list = user['restricted_words']
-        main_list = db.collection(u'users').document(u'main').get().to_dict()['main_list']
+        main_list = db.collection(u'users').document(u'list').get().to_dict()['main_list']
         unique_string=(" ").join(answers)
         stopwords = list(STOPWORDS)
         for i in res_list:
