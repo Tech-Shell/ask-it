@@ -30,8 +30,8 @@
         <form action="{% url 'user_panel' user_code  %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="user_code" value="{{ user_code }}">
-          <input type="text" name="answer" class="form-control" maxlength = "{{ characters }}" placeholder="Your answer..">
-          <p class="mt-2">*Maximum characters allowed: <span>{{ characters }}</span></p>
+          <input type="text" name="answer" id="my-textarea" class="form-control" maxlength = "{{ characters }}" placeholder="Your answer..">
+          <strong><p class="mt-2" id="my-textarea-remain">{{ characters }} characters remaining</p></strong>
           <div class="form-group">
             <button type="submit" class="btn btn-success">Submit</button>
           </div>
@@ -45,4 +45,17 @@
   <a href="#" class="to-top">
     <i class="fas fa-chevron-up"></i>
   </a>
+  <script>
+    const textArea = document.getElementById("my-textarea");
+    const remain = document.getElementById("my-textarea-remain");
+    const maxchar = '{{ characters }}';
+
+    textArea.addEventListener('input', () => {
+      const remaining = maxchar - textArea.value.length;
+      const color = remaining < 10 ? 'red': null;
+
+      remain.textContent = remaining +' characters remaining';
+      remain.style.color = color;
+    })
+  </script>
   {% endblock %}
