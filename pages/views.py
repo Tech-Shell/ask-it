@@ -109,7 +109,7 @@ def admin_panel(request, admin_code):
         }
         return render(request, 'pages/admin_area.html', context)
     else:
-        user_code = dict1[int(admin_code)]
+        user_code = db.collection(u'users').document(main).get().to_dict()[str(admin_code)]
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
