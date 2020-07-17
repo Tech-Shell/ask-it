@@ -136,9 +136,9 @@ def user_panel(request, user_code):
             specific_answers.append(answer)
 
         for i in specific_answers:
-            user.update({u'answers': firestore.ArrayUnion([i])})
+            user.update({u'answers': firestore.ArrayUnion([i.lower()])})
         
-        
+
         user.update({"responses": firestore.Increment(1)})
         return render(request, 'pages/success.html')
     else:
