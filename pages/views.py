@@ -91,8 +91,8 @@ def admin_panel(request, admin_code):
         
         wc = WordCloud(background_color='white',stopwords = stopwords,max_font_size=130,max_words=100,height=1000,width=1500)
         wc.generate(unique_string)
-        wc.to_file(f'askit/static/imgs/{admin_code}.png')
-        path_local = f'askit/static/imgs/{admin_code}.png'
+        wc.to_file(f'imgs/{admin_code}.png')
+        path_local = f'imgs/{admin_code}.png'
         image_path = f'imgs/{admin_code}.png'
         storage.child(image_path).put(path_local)
         image_url = storage.child(image_path).get_url(None)
@@ -148,7 +148,7 @@ def mail_cloud(request, admin_code):
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         name = user['name']
         email = user['email']
-        new_image_path = f'askit/static/imgs/{admin_code}.png'
+        new_image_path = f'imgs/{admin_code}.png'
         email = EmailMessage(
             'Ask-it Wordcloud',
             'Hey '+ name + '. Thank you for using Ask-it. Check the attachment for your wordcloud.',
@@ -172,8 +172,8 @@ def mail_cloud(request, admin_code):
         
         wc = WordCloud(background_color='white',stopwords = stopwords,max_font_size=130,max_words=100,height=1000,width=1500)
         wc.generate(unique_string)
-        wc.to_file(f'askit/static/imgs/{admin_code}.png')
-        path_local = f'askit/static/imgs/{admin_code}.png'
+        wc.to_file(f'imgs/{admin_code}.png')
+        path_local = f'imgs/{admin_code}.png'
         image_path = f'imgs/{admin_code}.png'
         storage.child(image_path).put(path_local)
         image_url = storage.child(image_path).get_url(None)
