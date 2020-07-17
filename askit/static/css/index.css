@@ -83,7 +83,6 @@ ul li a:hover{
     background-position: right;
   }
 }
-
 .main_head {
   font-size: 5rem;
   margin-top: 14rem;
@@ -97,7 +96,6 @@ ul li a:hover{
 
 h1 {
   margin-top: 2rem;
-  font-family: 'Poppins', sans-serif;
   font-weight: bolder;
   font-size: 3rem;
 }
@@ -201,7 +199,7 @@ footer{
   }
 
   .main_head{
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .card{
@@ -215,6 +213,6 @@ footer{
 
 @media(max-width: 400px){
   .main_head{
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 }
