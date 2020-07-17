@@ -146,7 +146,7 @@ def user_panel(request, user_code):
 
 def mail_cloud(request, admin_code):
     if request.method == "POST":
-        user_code = dict1[int(admin_code)]
+        user_code = db.collection(u'users').document(u'main').get().to_dict()[str(admin_code)]
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         name = user['name']
         email = user['email']
