@@ -145,8 +145,20 @@ footer{
     height: fit-content;
   }
 
+  .answer {
+    font-size: 2.5rem;
+  }
+  
   .nav-align{
     margin-left: 0px;
   }
 
+}
+
+@media(max-width: 400px){
+  
+  .answer {
+    font-size: 1.5rem;
+  }
+  
 }
