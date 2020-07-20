@@ -13,12 +13,32 @@
     <div class="collapse navbar-collapse nav menu">
       <ul class="navbar-nav nav-align">
         <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#responses" class="nav-link">Responses</a></li>
+        <li class="nav-item"><a href="#responses_cont" class="nav-link">Responses</a></li>
         <li class="nav-item"><a href="#wordcloud" class="nav-link">Wordcloud</a></li>
       </ul>
     </div>
   </nav>
-  <div class="container responses shadow-lg" id="responses">
+  <div class="container-fluid link3">
+    <div class="row  justify-content-center">
+      <div class="col-12 col-md-5 link1">
+        <div class="row">
+         <div class="col-12 text-center">
+          <h1 class="responses_head">Link</h1>
+         </div>   
+        </div>
+        <div class="row">
+          <div class="col-12 text-center mb-2">
+            <h4 class="responses_content mb-2" id="responses_content">
+              You can now share this link with other people
+            </h4>
+            <h5><a style="color:blue" href="{{ user_url }}" class="plum">{{ user_url }}</a></h5>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="container responses shadow-lg" id="responses_cont">
     <div class="row justify-content-center">
       <div class="col-12 text-center mt-4">
         <h1 class="responses_head">Responses</h1>

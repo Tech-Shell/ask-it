@@ -16,7 +16,9 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-
+import secrets 
+import string 
+  
 
 def index(request):
     return render(request, 'pages/index.html')
@@ -39,8 +41,10 @@ def link(request):
                 stopwords_new = []
         except:
             stopwords_new = []
-        
-        admin_code = random.sample(range(111111,555555),1)[0]
+
+        alphabet = string.ascii_letters + string.digits 
+        ad_password = ''.join(secrets.choice(alphabet) for i in range(200))
+        admin_code = ad_password
         user_code = random.sample(range(555556,999999),1)[0]
         doc_ref = db.collection(u'users').document(u'main')
         doc_ref.update({str(admin_code): user_code})
@@ -63,14 +67,7 @@ def link(request):
         user_url = "http://www.ask-it.gq/"+ str(user_code)
         local_user_url = "http://localhost:8000/"+ str(user_code)
 
-        context = {
-            'user_code':user_code,
-            'admin_url':admin_url,
-            'local_admin_url':local_admin_url,
-            'user_url':user_url,
-            'local_user_url':local_user_url,
-        }
-        return render(request, 'pages/generate.html', context)
+        return redirect(admin_url)
     else:
         print('CC Error')
 
@@ -98,9 +95,15 @@ def admin_panel(request, admin_code):
         storage.child(image_path).put(path_local)
         image_url = storage.child(image_path).get_url(None)
         show_wordcloud = True
+
+        user_url = "http://www.ask-it.gq/"+ str(user_code)
+        local_user_url = "http://localhost:8000/"+ str(user_code)
+
         context = {
             'image_url':image_url,
             'image_path':image_path,
+            'user_url':user_url,
+            'local_user_url':local_user_url,
             'show_wordcloud':show_wordcloud,
             'unique_string':unique_string,
             'responses':responses,
@@ -114,10 +117,15 @@ def admin_panel(request, admin_code):
         answers = user['answers']
         unique_string=(" ").join(answers)
         show_wordcloud = False
+        user_url = "http://www.ask-it.gq/"+ str(user_code)
+        local_user_url = "http://localhost:8000/"+ str(user_code)
+
         context = {
             'show_wordcloud':show_wordcloud,
             'unique_string':unique_string,
             'responses':responses,
+            'local_user_url':local_user_url,
+            'user_url':user_url,
             'admin_code':admin_code,
         }
         return render(request, 'pages/admin_area.html', context)
