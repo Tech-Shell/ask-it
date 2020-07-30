@@ -31,7 +31,7 @@
             <h4 class="responses_content mb-2" id="responses_content">
               You can now share this link with other people
             </h4>
-            <h5><a style="color:blue" href="{{ user_url }}" class="plum">{{ user_url }}</a></h5>
+            <h5><a style="color:blue" href="{{ user_url }}" class="plum">{{ user_url }}</a><button><img src="https://image.flaticon.com/icons/svg/2911/2911213.svg"  width = 50 height=30 title="Copy Link"></button></h5>
           </div>
         </div>
       </div>
@@ -144,6 +144,27 @@
   <a href="#" class="to-top">
     <i class="fas fa-chevron-up"></i>
   </a>
+  <script>
+    
+  </script>
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("button").click(function (event) {
+            event.preventDefault();
+            CopyToClipboard('{{ user_url }}', true, "Link copied");
+        });
+    });
+
+    function CopyToClipboard(value, showNotification, notificationText) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val(value).select();
+        document.execCommand("copy");
+        $temp.remove();
+        alert("Link Copied !");
+        }
+  </script>
   <script>
     function download(filename, text) {
     var element = document.createElement('a');
