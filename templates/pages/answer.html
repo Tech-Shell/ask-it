@@ -30,6 +30,7 @@
         <form action="{% url 'user_panel' user_code  %}" method="POST">
           {% csrf_token %}
           <input type="hidden" name="user_code" value="{{ user_code }}">
+          <input type="text" name="name" class="form-control" placeholder="Name"><br>
           <input type="text" name="answer" id="my-textarea" class="form-control" maxlength = "{{ characters }}" placeholder="Your answer..">
           <strong><p class="mt-2" id="my-textarea-remain">{{ characters }} characters remaining</p></strong>
           <div class="form-group">

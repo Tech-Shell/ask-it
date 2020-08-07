@@ -50,11 +50,10 @@
         <button class="btn btn-success" onClick="window.location.reload();">Refresh</button>
       </div>
       <div class="col-12 text-center">
-        <h4 class="responses_content">Download the answer list here.</h4>
+        <h4 class="responses_content">Click here to see the responses./h4>
       </div>
       <div class="col-12 col-md-4 text-center mt-3 mb-3">
-        <input id="text-val" type="hidden" value="{{ unique_string }}">
-        <input type="button" class="btn btn-info" id="dwn-btn" value="Download Answers">
+          <button class="btn btn-info" onClick="window.open('{{ text_url }}')">Responses</button>
       </div>
     </div>
   </div>

@@ -59,6 +59,7 @@ def link(request):
                 u'restricted_words' : stopwords_new,
                 u'responses':0,
                 u'answers':[],
+                u'names':[],
                     })
         
         admin_url = "http://www.ask-it.gq/"+ str(admin_code) + "/admin_panel"
@@ -115,10 +116,26 @@ def admin_panel(request, admin_code):
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
+        names = user['names']
         unique_string=(" ").join(answers)
         show_wordcloud = False
         user_url = "http://www.ask-it.gq/"+ str(user_code)
         local_user_url = "http://localhost:8000/"+ str(user_code)
+
+        
+        text_path = f'imgs/{admin_code}.txt'
+        lst = []
+        for i in names:
+            for j in i:
+                listitem = f'{j} => {i[j]}'
+                lst.append(listitem)
+
+        with open(text_path, 'w') as filehandle:
+            for jo in lst:
+                filehandle.write('%s\n' % jo)
+
+        storage.child(text_path).put(text_path)
+        text_url = storage.child(text_path).get_url(None)
 
         context = {
             'show_wordcloud':show_wordcloud,
@@ -127,6 +144,7 @@ def admin_panel(request, admin_code):
             'local_user_url':local_user_url,
             'user_url':user_url,
             'admin_code':admin_code,
+            'text_url':text_url,
         }
         return render(request, 'pages/admin_area.html', context)
 
@@ -134,6 +152,7 @@ def admin_panel(request, admin_code):
 def user_panel(request, user_code):
     if request.method == "POST":
         answer = request.POST['answer']
+        name = request.POST['name']
         user_code = request.POST['user_code'] 
 
         user = db.collection(u'users').document(str(user_code))
@@ -142,6 +161,10 @@ def user_panel(request, user_code):
         except:
             specific_answers = []
             specific_answers.append(answer)
+
+        lst = {name : answer}
+
+        user.update({u'names': firestore.ArrayUnion([lst])})
 
         for i in specific_answers:
             user.update({u'answers': firestore.ArrayUnion([i.lower()])})
