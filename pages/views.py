@@ -78,6 +78,7 @@ def admin_panel(request, admin_code):
         user = db.collection(u'users').document(str(user_code)).get().to_dict()
         responses = user['responses']
         answers = user['answers']
+        names = user['names']
         res_list = user['restricted_words']
         main_list = db.collection(u'users').document(u'list').get().to_dict()['main_list']
         unique_string=(" ").join(answers)
@@ -100,6 +101,20 @@ def admin_panel(request, admin_code):
         user_url = "http://www.ask-it.gq/"+ str(user_code)
         local_user_url = "http://localhost:8000/"+ str(user_code)
 
+        text_path = f'imgs/{admin_code}.txt'
+        lst = []
+        for i in names:
+            for j in i:
+                listitem = f'{j} => {i[j]}'
+                lst.append(listitem)
+
+        with open(text_path, 'w') as filehandle:
+            for jo in lst:
+                filehandle.write('%s\n' % jo)
+
+        storage.child(text_path).put(text_path)
+        text_url = storage.child(text_path).get_url(None)
+
         context = {
             'image_url':image_url,
             'image_path':image_path,
@@ -109,6 +124,7 @@ def admin_panel(request, admin_code):
             'unique_string':unique_string,
             'responses':responses,
             'admin_code':admin_code,
+            'text_url':text_url,
         }
         return render(request, 'pages/admin_area.html', context)
     else:
